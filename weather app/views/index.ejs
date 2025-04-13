@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Weather App using NodeJS</h1>
+
+      <!-- Weather Search Form -->
+      <form action="/weather" method="get">
+        <input type="text" name="city" placeholder="Enter city name" required />
+        <button type="submit">Get Weather</button>
+      </form>
+
+      <!-- Display Error Messages -->
+      <% if (error) { %>
+        <p class="error"><i class="fas fa-exclamation-triangle"></i> <%= error %></p>
+      <% } %>
+
+      <!-- Display Weather Data if Available -->
+      <% if (weather && weather.main && weather.weather) { %>
+        <div class="card">
+          <p>
+            <i class="fas fa-thermometer-half"></i>
+            Temperature: <%= weather.main.temp %>&deg;F
+          </p>
+          <p>
+            <i class="fas fa-cloud"></i>
+            Condition: <%= weather.weather[0].main %>
+          </p>
+          <p>
+            <i class="fas fa-map-marker-alt"></i>
+            Location: <%= weather.name %>, <%= weather.sys.country %>
+          </p>
+        </div>
+      <% } else if (!error && !weather) { %>
+        <p class="info">Enter a city name to get weather details.</p>
+      <% } %>
+    </div>
+  </body>
+</html>
