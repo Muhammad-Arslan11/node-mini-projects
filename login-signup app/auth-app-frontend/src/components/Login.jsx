@@ -49,14 +49,14 @@ function Login() {
         localStorage.setItem("loggedInUser", name);
 
         setTimeout(() => {
-          navigate('/signup');
+          navigate('/home');
         }, 1000);
       } else if (error) {
         const details = error?.details[0]?.message;
         handleError(details);
       }
     } catch (error) {
-      handleError("An error occurred while signing up.");
+      handleError("An error occurred while signing up");
     }
   }
 
@@ -65,17 +65,6 @@ function Login() {
       <h1>Login</h1>
       <div>
         <form onSubmit={handleLogin}>
-          <div>
-            <label htmlFor="name">Name</label>
-            <input
-              onChange={handleChange}
-              type="text"
-              name="name"
-              placeholder="Enter your name..."
-              autoFocus
-              value={loginInfo.name}
-            />
-          </div>
 
           <div>
             <label htmlFor="email">Email</label>
